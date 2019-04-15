@@ -1,4 +1,4 @@
-package com.example.cvapplication.ui;
+package com.example.cvapplication.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +19,7 @@ import com.example.cvapplication.ui.adapter.CVAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.rv_cvs)
     RecyclerView mRvCVs;
@@ -27,27 +27,34 @@ public class MainActivity extends AppCompatActivity {
     CVAdapter cvAdapter;
     RestAPIHelper restAPIHelper = new RestAPIHelper();
 
+    MainPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mRvCVs.setLayoutManager(new LinearLayoutManager(this));
-        restAPIHelper.getWebService().getCVs().enqueue(new Callback<List<CV>>() {
-            @Override
-            public void onResponse(Call<List<CV>> call, Response<List<CV>> response) {
-                if(response.isSuccessful()){
-                    cvAdapter = new CVAdapter(response.body());
-                    mRvCVs.setAdapter(cvAdapter);
-                }else{
-                    Toast.makeText(MainActivity.this,response.message(),Toast.LENGTH_LONG).show();
-                }
-            }
+        presenter = new MainPresenter(new RestAPIHelper().getWebService());
+        presenter.attach(this);
 
-            @Override
-            public void onFailure(Call<List<CV>> call, Throwable t) {
-                Toast.makeText(MainActivity.this,t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+        mRvCVs.setLayoutManager(new LinearLayoutManager(this));
+        presenter.getCVs();
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.detach();
+        super.onDestroy();
+    }
+
+    @Override
+    public void displayData(List<CV> cvList) {
+        cvAdapter = new CVAdapter(cvList);
+        mRvCVs.setAdapter(cvAdapter);
+    }
+
+    @Override
+    public void displayMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
