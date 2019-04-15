@@ -1,20 +1,10 @@
-package com.example.cvapplication.data.Network;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+package com.example.cvapplication.data.network;
 
 public class RestAPIHelper {
+    private final WebService webService;
 
-    private static final String BASE_URL = "https://api.myjson.com";
-    private Retrofit retrofit;
-    private WebService webService;
-
-    public RestAPIHelper() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        webService = retrofit.create(WebService.class);
+    public RestAPIHelper(WebService service) {
+        this.webService = service;
     }
 
     public WebService getWebService() {
