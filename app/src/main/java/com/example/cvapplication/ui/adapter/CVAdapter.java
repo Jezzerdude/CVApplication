@@ -54,8 +54,6 @@ public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
         TextView tvName;
         @BindView(R.id.tv_duration)
         TextView tvDuration;
-        @BindView(R.id.tv_id)
-        TextView tvId;
         @BindView(R.id.tv_description)
         TextView tvDescription;
         @BindView(R.id.tv_techs)
@@ -71,7 +69,6 @@ public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
         void bind(CV cv) {
             tvName.setText(Html.fromHtml("<b>" + COMPANY_NAME + "</b> " + cv.getCompany()));
             tvDuration.setText(Html.fromHtml("<b>" + DURATION + "</b> " + cv.getDuration()));
-            tvId.setText(Html.fromHtml("<b>" + COMPANY_ID + "</b> " + Integer.toString(((int) cv.getProjectId()))));
             tvDescription.setText(Html.fromHtml("<b>" + DESCRIPTION + "</b> " + cv.getRoleDescription()));
             String techs = "";
             for (String tech : cv.getTechStack()) {
