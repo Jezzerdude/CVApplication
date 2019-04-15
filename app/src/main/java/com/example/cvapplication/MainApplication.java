@@ -9,6 +9,11 @@ import com.example.cvapplication.di.component.DaggerApplicationComponent;
 public class MainApplication extends Application {
     private static MainApplication application;
     private ApplicationComponent applicationComponent;
+
+    public static MainApplication getInstance() {
+        return application;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -17,10 +22,6 @@ public class MainApplication extends Application {
                 .appModule(new AppModule(this))
                 .build();
         applicationComponent.inject(this);
-    }
-
-    public static MainApplication getInstance() {
-        return application;
     }
 
     public ApplicationComponent getApplicationComponent() {

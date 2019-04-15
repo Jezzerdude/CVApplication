@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface MainView extends MVPView {
     void displayData(List<CV> cvList);
+
     void displayMessage(String message);
 }

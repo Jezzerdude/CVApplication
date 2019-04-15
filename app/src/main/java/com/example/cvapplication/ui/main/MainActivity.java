@@ -1,11 +1,5 @@
 package com.example.cvapplication.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -20,6 +14,12 @@ import com.example.cvapplication.ui.adapter.CVAdapter;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainView {
     @BindView(R.id.rv_cvs)

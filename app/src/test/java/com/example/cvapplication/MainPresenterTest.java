@@ -36,31 +36,32 @@ public class MainPresenterTest {
     @Mock
     WebService webService;
 
-    MainPresenter presenter;
-    List<CV> cvs = new ArrayList<>();
+    private MainPresenter presenter;
+    private List<CV> cvs = new ArrayList<>();
+
     @Before
-    public void setup(){
+    public void setup() {
         MockitoAnnotations.initMocks(this);
         presenter = new MainPresenter(webService);
     }
 
     @Test
-    public void getCvSuccessShouldCallDisplayList(){
+    public void getCvSuccessShouldCallDisplayList() {
         when(webService.getCVs()).thenReturn(Single.just(cvs));
         presenter.getCVs();
 
         verify(mainView).displayData(cvs);
-        verify(mainView,never()).displayMessage(anyString());
+        verify(mainView, never()).displayMessage(anyString());
     }
 
     @Test
-    public void getCvFailureShouldCallDisplayError(){
+    public void getCvFailureShouldCallDisplayError() {
 
         String errorMessage = "This is error";
         when(webService.getCVs()).thenReturn(Single.error(new RuntimeException(errorMessage)));
         presenter.getCVs();
 
-        verify(mainView,never()).displayData(anyList());
+        verify(mainView, never()).displayData(anyList());
         verify(mainView).displayMessage(errorMessage);
     }
 }

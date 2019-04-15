@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
     @Provides
-    public Retrofit providesRetrofit(){
+    Retrofit providesRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(Constant.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -22,12 +22,12 @@ public class NetworkModule {
     }
 
     @Provides
-    public WebService providesWebService(Retrofit retrofit){
+    WebService providesWebService(Retrofit retrofit) {
         return retrofit.create(WebService.class);
     }
 
     @Provides
-    public RestAPIHelper providesRestAPIHelper(WebService service){
+    RestAPIHelper providesRestAPIHelper(WebService service) {
         return new RestAPIHelper(service);
     }
 }

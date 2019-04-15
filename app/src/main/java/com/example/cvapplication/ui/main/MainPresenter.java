@@ -8,9 +8,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter<MainView> {
-    WebService webService;
+    private WebService webService;
 
-    CompositeDisposable disposable = new CompositeDisposable();
+    private CompositeDisposable disposable = new CompositeDisposable();
 
     public MainPresenter(WebService webService) {
         this.webService = webService;

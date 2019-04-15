@@ -12,13 +12,13 @@ import dagger.Provides;
 public class ActivityModule {
     private Activity activity;
 
-    public ActivityModule(Activity activity){
+    public ActivityModule(Activity activity) {
         this.activity = activity;
     }
 
     @Provides
     @ActivityContext
-    public Context provideContext(){
+    Context provideContext() {
         return activity;
     }
 }

@@ -19,12 +19,12 @@ import butterknife.ButterKnife;
 
 public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
 
-    private List<CV> mCvList;
     private static final String COMPANY_NAME = "Company Name: ";
     private static final String DURATION = "Duration: ";
     private static final String COMPANY_ID = "Company ID: ";
     private static final String DESCRIPTION = "App Description: ";
     private static final String TECHS = "Technologies used: ";
+    private List<CV> mCvList;
 
     public CVAdapter(List<CV> cvList) {
         this.mCvList = cvList;
@@ -55,28 +55,29 @@ public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
         @BindView(R.id.tv_duration)
         TextView tvDuration;
         @BindView(R.id.tv_id)
-        TextView tvid;
+        TextView tvId;
         @BindView(R.id.tv_description)
-        TextView tvdescription;
+        TextView tvDescription;
         @BindView(R.id.tv_techs)
-        TextView tvtechs;
+        TextView tvTechs;
 
-        public CVViewHolder(@NonNull View itemView) {
+
+        CVViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
         @SuppressLint("SetTextI18n")
-        public void bind(CV cv) {
+        void bind(CV cv) {
             tvName.setText(Html.fromHtml("<b>" + COMPANY_NAME + "</b> " + cv.getCompany()));
             tvDuration.setText(Html.fromHtml("<b>" + DURATION + "</b> " + cv.getDuration()));
-            tvid.setText(Html.fromHtml("<b>" + COMPANY_ID + "</b> " + Integer.toString(((int) cv.getProjectId()))));
-            tvdescription.setText(Html.fromHtml("<b>" + DESCRIPTION + "</b> " + cv.getRoleDescription()));
+            tvId.setText(Html.fromHtml("<b>" + COMPANY_ID + "</b> " + Integer.toString(((int) cv.getProjectId()))));
+            tvDescription.setText(Html.fromHtml("<b>" + DESCRIPTION + "</b> " + cv.getRoleDescription()));
             String techs = "";
-            for(String tech : cv.getTechStack()){
+            for (String tech : cv.getTechStack()) {
                 techs = techs.concat(tech + ", ");
             }
-            tvtechs.setText(Html.fromHtml("<b>" + TECHS + "</b> " + techs));
+            tvTechs.setText(Html.fromHtml("<b>" + TECHS + "</b> " + techs));
         }
     }
 }

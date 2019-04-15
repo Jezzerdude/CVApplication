@@ -1,9 +1,9 @@
 package com.example.cvapplication.data.network.model;
 
-import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class CV {
 
@@ -21,47 +21,34 @@ public class CV {
     private String roleDescription;
     @SerializedName("techStack")
     @Expose
-    private List<String> techStack = null;
+    private List<String> techStack;
+
+    public CV(String company, String duration, long projectId, String roleDescription, List<String> techStack) {
+        this.company = company;
+        this.duration = duration;
+        this.projectId = projectId;
+        this.roleDescription = roleDescription;
+        this.techStack = techStack;
+    }
 
     public String getCompany() {
         return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public String getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
     public long getProjectId() {
         return projectId;
-    }
-
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
     }
 
     public String getRoleDescription() {
         return roleDescription;
     }
 
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
-    }
-
     public List<String> getTechStack() {
         return techStack;
     }
-
-    public void setTechStack(List<String> techStack) {
-        this.techStack = techStack;
-    }
-
 }
 
