@@ -1,6 +1,6 @@
 package com.example.cvapplication.ui.adapter;
 
-import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.cvapplication.R;
 import com.example.cvapplication.data.network.model.CV;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -19,15 +20,10 @@ import butterknife.ButterKnife;
 
 public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
 
-    private static final String COMPANY_NAME = "Company Name: ";
-    private static final String DURATION = "Duration: ";
-    private static final String COMPANY_ID = "Company ID: ";
-    private static final String DESCRIPTION = "App Description: ";
-    private static final String TECHS = "Technologies used: ";
-    private List<CV> mCvList;
+    private final List<CV> mCvList;
 
-    public CVAdapter(List<CV> cvList) {
-        this.mCvList = cvList;
+    public CVAdapter() {
+        this.mCvList = new ArrayList<>();
     }
 
     @NonNull
@@ -45,6 +41,12 @@ public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
     @Override
     public int getItemCount() {
         return mCvList.size();
+    }
+
+    public void setData(List<CV> data) {
+        mCvList.clear();
+        mCvList.addAll(data);
+        notifyDataSetChanged();
     }
 
     class CVViewHolder extends RecyclerView.ViewHolder {
@@ -65,16 +67,17 @@ public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
-        @SuppressLint("SetTextI18n")
         void bind(CV cv) {
-            tvName.setText(Html.fromHtml("<b>" + COMPANY_NAME + "</b> " + cv.getCompany()));
-            tvDuration.setText(Html.fromHtml("<b>" + DURATION + "</b> " + cv.getDuration()));
-            tvDescription.setText(Html.fromHtml("<b>" + DESCRIPTION + "</b> " + cv.getRoleDescription()));
-            String techs = "";
-            for (String tech : cv.getTechStack()) {
-                techs = techs.concat(tech + ", ");
+            Resources resources = itemView.getResources();
+            tvName.setText(Html.fromHtml(resources.getString(R.string.company, cv.getCompanyName())));
+            tvDuration.setText(Html.fromHtml(resources.getString(R.string.duration, cv.getProjectDuration())));
+            tvDescription.setText(Html.fromHtml(resources.getString(R.string.app_description, cv.getAppDescription())));
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String tech : cv.getTechsUsed()) {
+                stringBuilder.append(tech);
+                stringBuilder.append(", ");
             }
-            tvTechs.setText(Html.fromHtml("<b>" + TECHS + "</b> " + techs));
+            tvTechs.setText(Html.fromHtml(resources.getString(R.string.technologies, stringBuilder.toString())));
         }
     }
 }

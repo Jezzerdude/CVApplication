@@ -1,6 +1,8 @@
 package com.example.cvapplication.ui.main;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.cvapplication.MainApplication;
@@ -23,27 +25,35 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainView {
     @BindView(R.id.rv_cvs)
-    RecyclerView mRvCVs;
+    RecyclerView mItems;
 
-    CVAdapter cvAdapter;
+    @BindView(R.id.pb_home)
+    ProgressBar mProgress;
 
     @Inject
     WebService webService;
 
-    MainPresenter presenter;
+    private MainPresenter presenter;
+    private CVAdapter cvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
-        ActivityComponent component = DaggerActivityComponent.builder().applicationComponent(
-                MainApplication.getInstance().getApplicationComponent()).build();
+        ActivityComponent component = DaggerActivityComponent.builder()
+                .applicationComponent(MainApplication.getInstance().getApplicationComponent())
+                .build();
         component.inject(this);
+
         presenter = new MainPresenter(webService);
         presenter.attach(this);
 
-        mRvCVs.setLayoutManager(new LinearLayoutManager(this));
+        cvAdapter = new CVAdapter();
+        mItems.setLayoutManager(new LinearLayoutManager(this));
+        mItems.setAdapter(cvAdapter);
+
         presenter.getCVs();
     }
 
@@ -55,12 +65,21 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void displayData(List<CV> cvList) {
-        cvAdapter = new CVAdapter(cvList);
-        mRvCVs.setAdapter(cvAdapter);
+        cvAdapter.setData(cvList);
     }
 
     @Override
     public void displayMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showProgress() {
+        mProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        mProgress.setVisibility(View.GONE);
     }
 }

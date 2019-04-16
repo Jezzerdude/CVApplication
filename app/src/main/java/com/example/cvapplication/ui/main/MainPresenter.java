@@ -8,12 +8,13 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter<MainView> {
-    private WebService webService;
+    private final WebService webService;
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    private final CompositeDisposable disposable;
 
     public MainPresenter(WebService webService) {
         this.webService = webService;
+        disposable = new CompositeDisposable();
     }
 
     public void getCVs() {
@@ -21,6 +22,8 @@ public class MainPresenter extends BasePresenter<MainView> {
                 webService.getCVs()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(d -> getView().showProgress())
+                        .doOnEvent(((cvs, throwable) -> getView().hideProgress()))
                         .subscribe(cvList -> getView().displayData(cvList),
                                 throwable -> getView().displayMessage(throwable.getLocalizedMessage())));
     }

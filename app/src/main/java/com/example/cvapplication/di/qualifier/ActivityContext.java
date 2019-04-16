@@ -1,4 +1,4 @@
-package com.example.cvapplication.di.scope;
+package com.example.cvapplication.di.qualifier;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

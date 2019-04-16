@@ -8,6 +8,6 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface WebService {
-    @GET("bins/1gzsx4")
+    @GET("bins/bl4kg")
     Single<List<CV>> getCVs();
 }

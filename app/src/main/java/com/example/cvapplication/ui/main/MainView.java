@@ -9,4 +9,9 @@ public interface MainView extends MVPView {
     void displayData(List<CV> cvList);
 
     void displayMessage(String message);
+
+    void showProgress();
+
+    void hideProgress();
+
 }

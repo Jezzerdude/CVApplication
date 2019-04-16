@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CVApplication</string>
     <string name="job_break">---------------------------------------------------------------------------------</string>
+    <string name="company"><![CDATA[<b>Company: </b>]]>%1$s</string>
+    <string name="duration"><![CDATA[<b>Duration: </b>]]>%1$s</string>
+    <string name="app_description"><![CDATA[<b>App Description: </b>]]>%1$s</string>
+    <string name="technologies"><![CDATA[<b>Technologies: </b>]]>%1$s</string>
 </resources>

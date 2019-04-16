@@ -7,48 +7,40 @@ import java.util.List;
 
 public class CV {
 
-    @SerializedName("company")
+    @SerializedName("companyName")
     @Expose
-    private String company;
-    @SerializedName("duration")
+    private final String companyName;
+    @SerializedName("projectDuration")
     @Expose
-    private String duration;
-    @SerializedName("projectId")
+    private final String projectDuration;
+    @SerializedName("appDescription")
     @Expose
-    private long projectId;
-    @SerializedName("roleDescription")
+    private final String appDescription;
+    @SerializedName("techUsed")
     @Expose
-    private String roleDescription;
-    @SerializedName("techStack")
-    @Expose
-    private List<String> techStack;
+    private final List<String> techsUsed;
 
-    public CV(String company, String duration, long projectId, String roleDescription, List<String> techStack) {
-        this.company = company;
-        this.duration = duration;
-        this.projectId = projectId;
-        this.roleDescription = roleDescription;
-        this.techStack = techStack;
+    public CV(String companyName, String projectDuration, String appDescription, List<String> techsUsed) {
+        this.companyName = companyName;
+        this.projectDuration = projectDuration;
+        this.appDescription = appDescription;
+        this.techsUsed = techsUsed;
     }
 
-    public String getCompany() {
-        return company;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getProjectDuration() {
+        return projectDuration;
     }
 
-    public long getProjectId() {
-        return projectId;
+    public String getAppDescription() {
+        return appDescription;
     }
 
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
-    public List<String> getTechStack() {
-        return techStack;
+    public List<String> getTechsUsed() {
+        return techsUsed;
     }
 }
 
