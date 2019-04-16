@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.cvapplication.R;
-import com.example.cvapplication.data.temp.temp2.CV;
+import com.example.cvapplication.data.network.model.CV;
 
 import java.util.ArrayList;
 import java.util.List;

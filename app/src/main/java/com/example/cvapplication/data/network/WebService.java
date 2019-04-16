@@ -1,6 +1,6 @@
-package com.example.cvapplication.data.temp;
+package com.example.cvapplication.data.network;
 
-import com.example.cvapplication.data.temp.temp2.CV;
+import com.example.cvapplication.data.network.model.CV;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.cvapplication.ui.main;
 
-import com.example.cvapplication.data.temp.temp2.CV;
+import com.example.cvapplication.data.network.model.CV;
 import com.example.cvapplication.ui.base.MVPView;
 
 import java.util.List;

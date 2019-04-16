@@ -2,7 +2,7 @@ package com.example.cvapplication.di.component;
 
 import android.app.Application;
 
-import com.example.cvapplication.data.temp.WebService;
+import com.example.cvapplication.data.network.WebService;
 import com.example.cvapplication.di.NetworkModule;
 
 import javax.inject.Singleton;

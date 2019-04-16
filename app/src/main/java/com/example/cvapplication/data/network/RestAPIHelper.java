@@ -1,4 +1,4 @@
-package com.example.cvapplication.data.temp;
+package com.example.cvapplication.data.network;
 
 public class RestAPIHelper {
     private final WebService webService;

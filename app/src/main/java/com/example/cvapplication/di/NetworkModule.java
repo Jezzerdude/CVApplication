@@ -3,8 +3,8 @@ package com.example.cvapplication.di;
 import android.content.Context;
 
 import com.example.cvapplication.common.Constant;
-import com.example.cvapplication.data.temp.RestAPIHelper;
-import com.example.cvapplication.data.temp.WebService;
+import com.example.cvapplication.data.network.RestAPIHelper;
+import com.example.cvapplication.data.network.WebService;
 import com.example.cvapplication.di.qualifier.ApplicationContext;
 
 import javax.inject.Singleton;
