@@ -74,9 +74,11 @@ public class CVAdapter extends RecyclerView.Adapter<CVAdapter.CVViewHolder> {
             tvDescription.setText(Html.fromHtml(resources.getString(R.string.app_description, cv.getAppDescription())));
             StringBuilder stringBuilder = new StringBuilder();
             for (String tech : cv.getTechsUsed()) {
+                stringBuilder.append(" | ");
                 stringBuilder.append(tech);
-                stringBuilder.append(", ");
+                stringBuilder.append(" | ");
             }
+
             tvTechs.setText(Html.fromHtml(resources.getString(R.string.technologies, stringBuilder.toString())));
         }
     }
