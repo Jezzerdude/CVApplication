@@ -7,8 +7,8 @@ import android.widget.Toast;
 
 import com.example.cvapplication.MainApplication;
 import com.example.cvapplication.R;
-import com.example.cvapplication.data.network.WebService;
-import com.example.cvapplication.data.network.model.CV;
+import com.example.cvapplication.data.temp.WebService;
+import com.example.cvapplication.data.temp.temp2.CV;
 import com.example.cvapplication.di.component.ActivityComponent;
 import com.example.cvapplication.di.component.DaggerActivityComponent;
 import com.example.cvapplication.ui.adapter.CVAdapter;

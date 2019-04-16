@@ -1,4 +1,4 @@
-package com.example.cvapplication.data.network.model;
+package com.example.cvapplication.data.temp.temp2;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -42,5 +42,6 @@ public class CV {
     public List<String> getTechsUsed() {
         return techsUsed;
     }
+    //added comment
 }
 

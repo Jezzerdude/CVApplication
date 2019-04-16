@@ -1,6 +1,6 @@
 package com.example.cvapplication.ui.main;
 
-import com.example.cvapplication.data.network.WebService;
+import com.example.cvapplication.data.temp.WebService;
 import com.example.cvapplication.ui.base.BasePresenter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
